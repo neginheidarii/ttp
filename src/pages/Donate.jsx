@@ -10,7 +10,7 @@ const FLOW = [
 ];
 
 const FAQ = [
-  { q: 'Is my donation tax-deductible?', a: '[Explain tax receipt eligibility for your charity registration and the countries you accept donations from.]' },
+  { q: 'Is the organization officially registered?', a: 'Yes. Legal name: The TEACH Project Foundation. Federally incorporated in Canada. Corporation No. 1648069-1.' },
   { q: 'Can I change or cancel a monthly gift?', a: `Yes. Email ${site.email} and we'll update or cancel it right away.` },
   { q: 'How do you choose partner NGOs?', a: 'Every partner goes through our vetting process before we feature them. [Summary of selection criteria, to be published in the updated brand document.]' },
   { q: 'Where does my donation go?', a: "To the partner NGO you choose, or where it's needed most across our current partners." }
@@ -32,8 +32,8 @@ export default function Donate() {
           </div>
         </div>
         <div className="donate-hero__form">
-          <h1 id="donate-title" className="display-2">Give a child the chance to learn.</h1>
-          <p className="lede">Your donation goes directly to our partner NGOs working to end learning poverty.</p>
+          <h1 id="donate-title" className="display-2">Partner with communities expanding equitable education.</h1>
+          <p className="lede">Support trusted local NGOs through one-time gifts, monthly giving, and long-term collaboration.</p>
           {canceled && (
             <div className="notice" role="status">
               <p>Checkout was canceled, so you weren't charged.</p>

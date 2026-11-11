@@ -47,6 +47,6 @@ export function useDocumentTitle(title) {
   useEffect(() => {
     document.title = title
       ? `${title} | The TEACH Project`
-      : 'The TEACH Project | Training & Education for All Children';
+      : 'The TEACH Project | Connecting global resources to expand equitable education';
   }, [title]);
 }

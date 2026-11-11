@@ -10,7 +10,7 @@ export default function NotFound({ message = "We couldn't find that page." }) {
         <p className="lede">{message}</p>
         <div className="thanks__actions">
           <Link to="/" className="btn btn--navy btn--lg">Go to the home page</Link>
-          <Link to="/blog" className="text-link">Read our field notes</Link>
+          <Link to="/projects" className="text-link">Explore our projects</Link>
         </div>
       </div>
     </section>

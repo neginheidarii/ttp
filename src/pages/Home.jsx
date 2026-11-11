@@ -3,13 +3,8 @@ import { useDonate } from '../components/DonateContext.jsx';
 import ChapterMark from '../components/ChapterMark.jsx';
 import HeadsRow from '../components/HeadsRow.jsx';
 import LoopVideo from '../components/LoopVideo.jsx';
-import ProjectMap from '../components/ProjectMap.jsx';
-import PostCard from '../components/PostCard.jsx';
 import Newsletter from '../components/Newsletter.jsx';
 import { impact } from '../content/impact.js';
-import { partners } from '../content/partners.js';
-import { mappedProjects } from '../content/projects.js';
-import { latestPosts } from '../content/posts.js';
 import { site } from '../content/site.js';
 import { useDocumentTitle, useInView } from '../lib/hooks.js';
 
@@ -32,7 +27,7 @@ const BEATS = [
 const STEPS = [
   { title: 'Learn', text: 'Understand learning poverty around the world, and why education changes lives.' },
   { title: 'Meet', text: 'Get to know the vetted NGOs working on the ground, through their own stories.' },
-  { title: 'Give', text: 'Support their work directly, once or every month. Your donation goes to our partner NGOs.' }
+  { title: 'Give', text: 'Support their work through one-time gifts, monthly giving, or volunteering your time and skills.' }
 ];
 
 function Beat({ beat }) {
@@ -41,7 +36,7 @@ function Beat({ beat }) {
     <div ref={ref} className={`beat${active ? ' is-active' : ''}`}>
       <h3 className="beat__title">{beat.title}</h3>
       <p>{beat.text}</p>
-      {beat.link && <a href="#partners" className="text-link text-link--light">Meet our partners</a>}
+      {beat.link && <Link to="/projects" className="text-link text-link--light">Explore our projects</Link>}
     </div>
   );
 }
@@ -49,7 +44,6 @@ function Beat({ beat }) {
 export default function Home() {
   useDocumentTitle();
   const { openDonate } = useDonate();
-  const featured = partners.find((p) => p.featured) || partners[0];
 
   return (
     <>
@@ -59,8 +53,8 @@ export default function Home() {
         <div className="container hero__copy">
           <h1 className="hero__title">Every child should be able to read this sentence.</h1>
           <p className="hero__lede">
-            The TEACH Project shares the stories of carefully vetted NGOs fighting learning poverty,
-            and gives you a direct way to support their work.
+            {site.tagline}. We amplify grassroots education efforts and connect them to the partners,
+            volunteers and resources they need to grow.
           </p>
           <div className="hero__actions">
             <button type="button" className="btn btn--coral btn--lg" onClick={() => openDonate()}>Donate</button>
@@ -80,7 +74,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="story" className="section problem" aria-labelledby="problem-title">
+      <section id="story" className="section section--mist" aria-labelledby="story-title">
+        <div className="container">
+          <h2 id="story-title" className="display-3 section-title">Our story</h2>
+          <p className="lede">
+            The TEACH Project Foundation is a Toronto-based, federally incorporated Canadian nonprofit founded in 2023.
+            We are a group of young people who believe education should be equitable, empowering and accessible to every child.
+          </p>
+          <p className="lede">
+            We share the stories and projects of local NGOs working in communities facing barriers to education,
+            and use art and immersive experiences to reflect those challenges. With supporters and partners,
+            we connect grassroots initiatives to the resources they need to empower their communities.
+          </p>
+          <p className="lede">
+            We do not apply one fixed solution. The TEACH Project acts as a connector and catalyst,
+            mobilizing global networks and creating cultural experiences that turn awareness into action.
+          </p>
+          <p className="lede">
+            Our mission is to expand equitable access to empowering learning opportunities so children can develop
+            their potential and shape their future. Our vision is a world where every child can learn, grow and thrive.
+          </p>
+          <p className="lede">
+            Since 2023, we have featured 3 partner NGOs, raised $91K for partner NGOs, and grown a community of 30+ volunteers.
+          </p>
+        </div>
+      </section>
+
+      <section className="section problem" aria-labelledby="problem-title">
         <div className="container problem__grid">
           <div>
             <ChapterMark numeral="I">The problem</ChapterMark>
@@ -134,7 +154,7 @@ export default function Home() {
         <div className="container">
           <div className="partners__head">
             <div>
-              <ChapterMark numeral="III">Who we feature</ChapterMark>
+              <ChapterMark numeral="III">How we choose partners</ChapterMark>
               <h2 id="partners-title" className="display-3">Local organisations, carefully vetted.</h2>
             </div>
             <div className="partners__intro">
@@ -145,23 +165,6 @@ export default function Home() {
               <Link to="/donate#faq" className="text-link">How we choose partners</Link>
             </div>
           </div>
-          <article className="featured">
-            <img src={featured.image} alt={featured.imageAlt} loading="lazy" />
-            <div className="featured__body">
-              <span className="featured__label">Featured partner</span>
-              <h3 className="featured__name">{featured.name}</h3>
-              <span className="featured__region">{featured.region}</span>
-              <p>{featured.summary}</p>
-              <dl className="facts">
-                <div><dt>Founded</dt><dd>{featured.founded}</dd></div>
-                <div><dt>Schools supported</dt><dd>{featured.schools}</dd></div>
-                <div><dt>Children reached</dt><dd>{featured.children}</dd></div>
-              </dl>
-              <div className="featured__actions">
-                <button type="button" className="btn btn--coral" onClick={() => openDonate(featured.id)}>Support this partner</button>
-              </div>
-            </div>
-          </article>
         </div>
       </section>
 
@@ -179,26 +182,6 @@ export default function Home() {
               </li>
             ))}
           </ol>
-          <div className="map-head">
-            <h3 className="display-4">Where our partners work</h3>
-            <p className="muted">Select a pin to see the project.</p>
-          </div>
-          <ProjectMap projects={mappedProjects} />
-        </div>
-      </section>
-
-      <section className="section" aria-labelledby="notes-title">
-        <div className="container">
-          <div className="section-head">
-            <div>
-              <h2 id="notes-title" className="display-3">Field notes</h2>
-              <p className="lede">Stories, updates and explainers from our work.</p>
-            </div>
-            <Link to="/blog" className="text-link">View all stories</Link>
-          </div>
-          <div className="card-grid">
-            {latestPosts(3).map((p) => <PostCard key={p.slug} post={p} />)}
-          </div>
         </div>
       </section>
 

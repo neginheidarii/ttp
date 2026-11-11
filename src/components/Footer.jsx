@@ -61,8 +61,7 @@ export default function Footer() {
             © {new Date().getFullYear()} {site.name}.
           </span>
           <span>
-            Legal name: The TEACH Project Foundation. Federally incorporated in
-            Canada. Corporation No. 1648069-1.
+            The TEACH Project Foundation. Corporation No. 1648069-1.
           </span>
         </div>
       </div>
